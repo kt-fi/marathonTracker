@@ -58,7 +58,6 @@ const loginGoogle = async (req, res, next) => {
 
 const signupEmail = async (req, res, next) => {
     let errors = validationResult(req);
-
     if (!errors.isEmpty()) {
         console.log(errors)
         return res.json({ msg: "errors exist in your sign up form please check all required inpts" }).status(422)
@@ -107,7 +106,7 @@ const signupEmail = async (req, res, next) => {
     try {
         let payload = { subject: user._id };
         let token = jwt.sign(payload, process.env.JWT_SECRET);
-        res.json({ user, token })
+        return res.json({ user, token })
     } catch (err) {
         const error = new HttpError('Error Creating JWT', 500)
         res.json({ msg: error.message });

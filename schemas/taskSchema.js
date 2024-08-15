@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
+    _id: false,
     taskId: {type: String, require: true},
     userId: {type: String, require: true},
     taskName: {type: String, require: true},

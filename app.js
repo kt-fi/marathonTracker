@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/auth", authRouter );
+app.use("/app", authRouter );
 
 mongoose.set('strictQuery', true);
 mongoose.connect(`mongodb+srv://admin1:rangers20001@cluster0.ra3wn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`, { 
