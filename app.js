@@ -7,11 +7,7 @@ require('dotenv').config()
 const authRouter = require('./routers/authRouter');
 
 const app = express();
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-   next();
-  });
+
 app.use(cors());
 app.use(express.json());
 
@@ -25,5 +21,5 @@ mongoose.connect(`mongodb+srv://admin1:${process.env.MONGO_DB_PWD}@cluster0.ra3w
 
 
 app.listen(process.env.PORT, ()=> {
-    console.log("Server Started on 3001");
+    console.log(process.env.MONGO_DB_PWD);
 })
