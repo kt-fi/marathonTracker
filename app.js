@@ -4,7 +4,8 @@ const cors = require("cors");
 require('dotenv').config()
 
 
-const authRouter = require('./routers/authRouter')
+const authRouter = require('./routers/authRouter');
+const { eventNames } = require("./schemas/userSchema");
 
 const app = express();
 
@@ -20,6 +21,6 @@ mongoose.connect(`mongodb+srv://admin1:rangers20001@cluster0.ra3wn.mongodb.net/?
 
 
 
-app.listen(3001, ()=> {
+app.listen(3001 || process.env.PORT, ()=> {
     console.log("Server Started on 3001");
 })
