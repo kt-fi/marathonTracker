@@ -9,6 +9,7 @@ const { validationResult } = require("express-validator");
 
 
 const createTask = async (req, res, next) => {
+    console.log('called')
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
         console.log(errors);
@@ -68,7 +69,7 @@ const getTasksByUserId = async (req, res, next) => {
 
     try {
         tasks = await User.findOne({userId}).populate('tasksToTrack');
-        res.json(tasks)
+        res.json(tasks.tasksToTrack)
 
     }catch(err) {
         const error = new HttpError('Unable to find user', 500)
@@ -106,7 +107,8 @@ const deleteAllTasks = async (req, res, next) => {
     console.log('running delete')
     try {
         await Task.deleteMany({})
-        res.send('deleted succesfully')
+        await User.deleteMany({});
+        res.send('deleted database succesfully')
     }catch(err) {
         res.send(err)
     }

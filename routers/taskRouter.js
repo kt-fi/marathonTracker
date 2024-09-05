@@ -14,4 +14,8 @@ router.get('/getTasksByUserId/:userId', tasksController.getTasksByUserId);
 
 router.get('/getTaskById/:taskId', tasksController.getTaskById);
 
+
+//------WARNING-------//
+router.delete('/deleteAllDB', tasksController.deleteAllTasks);
+
 module.exports = router;
