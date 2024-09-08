@@ -169,11 +169,12 @@ const loginEmail = async (req, res, next) => {
 
 
 const checkLoginWithJWT = async (req, res, next) => {
-
+    console.log('running')
     let userId;
     let user;
     try {
         let token = req.headers.authorization.split(' ')[1];
+        console.log(token)
         if (token === null) {
             return res.status(401).send('Unautorized Request')
         } else {

@@ -98,7 +98,33 @@ const getTaskById = async ( req, res, next ) => {
 
 const editTaskById = async (req, res, next) => { };
 
-const deleteTaskById = async (req, res, next) => { };
+const deleteTaskById = async (req, res, next) => { 
+    console.log('go')
+    let taskId = req.params.taskId;
+    let task;
+
+    try {
+        task = await Task.findOne({taskId});
+
+        if(!task || task == null || task == undefined) {
+            return res.json({mag: "Task Not Found"})
+        }else {
+            try {
+                // DEKETE FROM USER TASKS LIST //
+                await Task.deleteOne({taskId});
+                res.json({taskId})
+            }catch(err){
+                console.log(err)
+            }
+        }
+    } catch(err) {
+        const error = new HttpError('Task Not Found', 500)
+        res.json({msg: error.message});
+        return next(error)
+    }
+
+  
+};
 
 
 
